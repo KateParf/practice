@@ -1,5 +1,5 @@
 class MyFirstClass {
-    static void main(String[] s) {
+    public static void main(String[] s) {
         System.out.println("Hello world!!!");
     }
 }
