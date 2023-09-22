@@ -18,5 +18,4 @@ public interface TabulatedFunction extends MathFunction{
     //Метод, возвращающий самый правый x
     double rightBound();
 
-
 }
