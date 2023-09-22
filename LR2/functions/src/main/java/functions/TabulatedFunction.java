@@ -9,5 +9,14 @@ public interface TabulatedFunction extends MathFunction{
     double getY(int index);
     //Метод, задающий значение y по номеру индекса
     void setY(int index, double value);
+    //Метод, возвращающий индекс аргумента x
+    int indexOfX(double x);
+    //Метод, возвращающий индекс первого вхождения значения y. Если такого y в таблице нет, то необходимо вернуть -1
+    int indexOfY(double y);
+    //Метод, возвращающий самый левый x
+    double leftBound();
+    //Метод, возвращающий самый правый x
+    double rightBound();
+
 
 }
