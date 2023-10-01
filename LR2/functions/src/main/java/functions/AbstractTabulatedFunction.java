@@ -47,7 +47,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
         return 0;
     }
 
-    protected double apply() {
+    public double apply(double x) {
         return 0;
     }
 }
