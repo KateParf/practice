@@ -83,6 +83,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return this.count;
     }
 
+    // Метод, получающий значение аргумента x по номеру индекса
     @Override
     public double getX(int index) {
         return getNode(index).x;
