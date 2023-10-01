@@ -149,24 +149,41 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return count;
     }
 
+    private Node floorNodeOfX(double x){
+        Node node = this.head;
+        for (int i = 0; i < this.count; i++) {
+            if (node.x == x)
+                return node;
+            else if (node.x > x) {
+                return (i == 0) ? head : node.prev;
+            }
+            node = node.next;
+        }
+        return head;
+    }
+
     @Override
     protected double extrapolateLeft(double x) {
-        return interpolate(x, 0);
+        return interpolate(x, head);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        return interpolate(x, getCount()-2);
+        return interpolate(x, head.prev.prev);
     }
 
     @Override
     protected double interpolate(double x, int floorIndex) {
         Node left = getNode(floorIndex);
-        double leftX = left.x;
-        double leftY = left.y;
-        left = left.next;
-        double rightX = left.x;
-        double rightY = left.y;
+        return interpolate(x, left);
+    }
+
+    private double interpolate(double x, Node floorNode){
+        double leftX = floorNode.x;
+        double leftY = floorNode.y;
+        floorNode = floorNode.next;
+        double rightX = floorNode.x;
+        double rightY = floorNode.y;
         return this.interpolate(x, leftX, rightX, leftY, rightY);
     }
 
@@ -194,7 +211,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         int idxx = indexOfX(x);
         if (idxx != -1)
             return getY(idxx);
-        idxx = floorIndexOfX(x);
-        return interpolate(x, idxx);
+
+        Node node = floorNodeOfX(x);
+        return interpolate(x, node);
+
+        //idxx = floorIndexOfX(x);
+        //return interpolate(x, idxx);
     }
 }
