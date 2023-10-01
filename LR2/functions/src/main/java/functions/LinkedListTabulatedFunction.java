@@ -23,21 +23,23 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     protected void addNode(double x, double y) {
         if (head == null) {
+            head = new Node(x, y, null, null);
             head.next = head;
             head.prev = head;
-            head.x = x;
-            head.y = y;
         } else {
-            Node addNode = new Node(x, y, head.next, head.prev);
+            Node addNode = new Node(x, y, head, head.prev);
             head.prev.next = addNode;
-            head.next.prev = addNode;
-            head = addNode;
+            head.prev = addNode;
         }
         count++;
     }
 
-    ;
-
+    /**
+     * возвращающий ссылку на узел номер index. Предполагается, что индекс всегда корректный.
+     * Необходимо в цикле бежать по элементам списка, пока не будет найден нужный по счёту.
+     * Его и нужно будет вернуть из метода.
+     * Дополнительно можно реализовать, чтобы в случае, когда индекс больше половины count, бежать с хвоста списка.
+     */
     protected Node getNode(int index) {
         Node node = this.head;
         for (int i = 0; i < index; i++) {
@@ -46,9 +48,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return node;
     }
 
-    ;
-
     // конструктор 1
+    /** Предполагается, что значения xValues не повторяются и упорядочены.
+     * Также подразумевается, что длина этих массивов совпадает
+     */
     LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         super();
         for (int i = 0; i < xValues.length; i++) {
