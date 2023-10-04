@@ -286,7 +286,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         //remove его
         node.prev.next = node.next;
         node.next.prev = node.prev;
-        //node = null;
+        // если удаляем 0й элемент - обновляем голову
+        if(index == 0) head = node.next;
 
         count--;
     }

@@ -272,4 +272,26 @@ class LinkedListTabulatedFunctionTest {
         assertEquals(funk.rightBound(), 18);
         assertEquals(funk.getCount(), 7);
     }
+
+    @Test
+    void remove(){
+        var funk = new LinkedListTabulatedFunction(new double[]{1, 3, 9, 15}, new double[]{1, 3, 9, 15});
+        // слева
+        funk.remove(0);
+        assertEquals(funk.leftBound(), 3);
+        assertEquals(funk.getCount(), 3);
+
+        // в табл точ
+        funk.remove(1);
+        assertEquals(funk.getX(1), 15);
+        assertEquals(funk.getCount(), 2);
+
+        // справа
+        funk.remove(1);
+        assertEquals(funk.rightBound(), 3);
+        assertEquals(funk.getCount(), 1);
+
+        funk.remove(0);
+        assertEquals(funk.getCount(), 0);
+    }
 }
