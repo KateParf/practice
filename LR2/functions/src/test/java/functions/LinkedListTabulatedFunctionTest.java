@@ -251,4 +251,25 @@ class LinkedListTabulatedFunctionTest {
         res = funk.apply(30);
         assertEquals(res, 1);
     }
+
+    @Test
+    void insert(){
+        var funk = new LinkedListTabulatedFunction(new double[]{1, 3, 9, 15}, new double[]{1, 3, 9, 15});
+        // слева
+        funk.insert(0, 0);
+        assertEquals(funk.leftBound(), 0);
+        assertEquals(funk.getCount(), 5);
+        // в промежут
+        funk.insert(12,13);
+        assertEquals(funk.getX(4), 12);
+        assertEquals(funk.getCount(), 6);
+        // в табл точ
+        funk.insert(12, 12);
+        assertEquals(funk.getY(4), 12);
+        assertEquals(funk.getCount(), 6);
+        // справа
+        funk.insert(18, 18);
+        assertEquals(funk.rightBound(), 18);
+        assertEquals(funk.getCount(), 7);
+    }
 }

@@ -250,7 +250,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 count++;
                 return;
             }
-            //добавление в середину и конец
+            //добавление в середину
             else if ((node.x > x) & (i != 0)) {
                 Node addNode = new Node(x, y, node, node.prev);
                 node.prev.next = addNode;
@@ -260,6 +260,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             }
             node = node.next;
         }
+        //добавление в конец
+        Node addNode = new Node(x, y, node, node.prev);
+        node.prev.next = addNode;
+        node.prev = addNode;
+        count++;
 
     }
 }
