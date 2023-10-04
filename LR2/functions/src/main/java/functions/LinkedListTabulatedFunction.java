@@ -1,7 +1,7 @@
 package functions;
 
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Insertable{
 
     protected class Node {
         public Node prev;
@@ -221,5 +221,45 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
         //idxx = floorIndexOfX(x);
         //return interpolate(x, idxx);
+    }
+
+    /** Метод, вставляющий значение в табулированную функцию.
+     * При этом предполагается, что если x уже содержится в таблице, то его значение y заменяется на новое.
+     * Если входное x находится между двумя другими значениями x, то в таблицу добавляется значение между ними.
+     * Если входное x левее всех имеющихся x, то значение добавляется в начало таблицы.
+     * Если правее – то в конец.
+     */
+    public void insert(double x, double y){
+        //Если список пустой, то просто делегировать выполнение методу addNode() и завершить выполнение метода insert()
+        if (head == null){
+            addNode(x,y);
+            return;
+        }
+        Node node = head;
+        for (int i = 0; i < count; i++) {
+            if (node.x == x){
+                node.y = y;
+                return;
+            }
+            //добавление в самое начало с обновлением головы
+            else if ((node.x > x) & (i == 0)) {
+                Node addNode = new Node(x, y, head, head.prev);
+                head.prev.next = addNode;
+                head.prev = addNode;
+                head = addNode;
+                count++;
+                return;
+            }
+            //добавление в середину и конец
+            else if ((node.x > x) & (i != 0)) {
+                Node addNode = new Node(x, y, node, node.prev);
+                node.prev.next = addNode;
+                node.prev = addNode;
+                count++;
+                return;
+            }
+            node = node.next;
+        }
+
     }
 }
