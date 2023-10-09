@@ -138,4 +138,12 @@ class ArrayTabulatedFunctionTest
         assertEquals(res3.getX(3), 7);
         assertEquals(res3.getY(3), 6);
     }
+    @Test
+    void remove()
+    {
+        ArrayTabulatedFunction res4 = new ArrayTabulatedFunction(xValues, yValues);
+        res4.remove(2);
+        assertEquals(res4.getX(2), 8);
+        assertEquals(res4.getY(2), 7);
+    }
 }
