@@ -1,6 +1,7 @@
 package functions;
 
-public abstract class AbstractTabulatedFunction implements TabulatedFunction {
+public abstract class AbstractTabulatedFunction implements TabulatedFunction
+{
     //Метод получения количества табулированных значений
     public abstract int getCount();
 
@@ -25,29 +26,37 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     //Метод, возвращающий самый правый x
     public abstract double rightBound();
 
-    //----------
+    protected double[] xValues;
+    protected double[] yValues;
+    protected int count;
 
-    protected int floorIndexOfX(double x) {
+    protected int floorIndexOfX(double x)
+    {
         return 0;
     }
 
-    protected double extrapolateLeft(double x) {
+    protected double extrapolateLeft(double x)
+    {
         return 0;
     }
 
-    protected double extrapolateRight(double x) {
+    protected double extrapolateRight(double x)
+    {
         return 0;
     }
 
-    protected double interpolate(double x, int floorIndex) {
+    protected double interpolate(double x, int floorIndex)
+    {
         return 0;
     }
 
-    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
-        return 0;
+    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY)
+    {
+        return leftY + (x - leftX) * (rightY - leftY) / (rightX - leftX);
     }
 
-    public double apply(double x) {
+    public double apply(double x)
+    {
         return 0;
     }
 }
